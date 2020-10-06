@@ -18,6 +18,7 @@ def start(message):
 	bot.send_message ( message.chat.id,"Бот запущен" )
 	while True:
 		olimpiad = cheackData()
+		bot.send_message ( message.chat.id,"р" )
 		if now.hour == 9 and olimpiad != None:
 			bot.send_message ( message.chat.id,"Доброе утро, ребята!" )
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
