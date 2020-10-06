@@ -2,9 +2,9 @@ import telebot
 from telebot import types
 from datetime import datetime
 from time import sleep
+import os
 
-
-TOKEN = "1375951180:AAGsrXQIeZl-spii5MxoGDAsYVSKH7SwAsQ"
+TOKEN = os.environ.get('BOT_TOKEN') 
 now = datetime.now()
 now_data = str(now.day) + "." + str(now.month)
 olimpiades = {"30.9" : "обществознанию", "12.10" : "истории", "13.10" : "технологии и итальянскому языку", "14.10" : "литературе",
