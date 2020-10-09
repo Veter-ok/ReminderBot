@@ -25,7 +25,7 @@ def start(message):
 		elif now.hour == 17 and olimpiad != None:
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У выс есть ещё время, чтобы принять участие в олипиаде по {}".format (cheackData () ) )
 			del olimpiades[olimpiad]
-		sleep(10)
+		sleep(600)
 
 
 def cheackData():
