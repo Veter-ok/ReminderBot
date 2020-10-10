@@ -11,6 +11,7 @@ olimpiades = {"30.9" : "обществознанию", "12.10" : "истории
               "16.10" : "географии", "19.10" : "праву", "22.10" : "математике", "26.10" : "экономике",
               "27.10" : "экономике", "28.10" : "исскуству", "29.10" : "информатике"}
 bot = telebot.TeleBot(str(TOKEN))
+morning_message = False
 
 
 @bot.message_handler(commands=['start'])
@@ -18,12 +19,15 @@ def start(message):
 	bot.send_message ( message.chat.id,"Бот запущен" )
 	while True:
 		olimpiad = cheackData()
+		now = datetime.now()
 		#bot.send_message ( message.chat.id,"р" )
-		if now.hour == 9 and olimpiad != None:
+		if now.hour == 9 and olimpiad != None and not morning_message:
 			bot.send_message ( message.chat.id,"Доброе утро, ребята!" )
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
+			morning_message = True
 		elif now.hour == 17 and olimpiad != None:
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У выс есть ещё время, чтобы принять участие в олипиаде по {}".format (cheackData () ) )
+			morning_message = False
 			del olimpiades[olimpiad]
 		sleep(600)
 
