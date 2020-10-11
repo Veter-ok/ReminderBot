@@ -36,7 +36,7 @@ def start(message):
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У выс есть ещё время, чтобы принять участие в олипиаде по {}".format (cheackData () ) )
 			morning_message = False
 			del olimpiades[olimpiad]
-		if messageLesson != None and not sendLesson and (now.hour == 9 and now now.minute <= 15):
+		if messageLesson != None and not sendLesson and (now.hour == 9 and now.minute <= 15):
 			bot.send_message ( message.chat.id, messageLesson)
 			sendLesson = True
 			sendDate = now.day
