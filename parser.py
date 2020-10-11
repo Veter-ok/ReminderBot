@@ -57,20 +57,3 @@ def get_last_links(html):
 		return [date, link, title]
 	else:
 		return None
-
-
-def createMessage():
-	now = datetime.now()
-	all_parser = parser()
-	links = all_parser[0]
-	time = all_parser[1]
-	message = "Что у вас сегодня:\n"
-	index = 1
-	for i in range(len(links)):
-		date = str(now.month) + str(now.day)
-		if date == links[i][0]:
-			message += str(index) + ". " + str(time[i]) + " " + str(links[i][2][3:]) + "\n" + str(links[i][1][8:])+"\n"
-			index += 1 
-	return message
-
-print(createMessage())
