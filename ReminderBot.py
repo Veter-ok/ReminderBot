@@ -3,10 +3,12 @@ from telebot import types
 from datetime import datetime
 from time import sleep
 import os
+from parser import parser
 
 TOKEN = os.environ.get('BOT_TOKEN') 
 now = datetime.now()
 now_data = str(now.day) + "." + str(now.month)
+dateLesson = None
 olimpiades = {"30.9" : "обществознанию", "12.10" : "истории", "13.10" : "технологии и итальянскому языку", "14.10" : "литературе",
               "16.10" : "географии", "19.10" : "праву", "22.10" : "математике", "26.10" : "экономике",
               "27.10" : "экономике", "28.10" : "исскуству", "29.10" : "информатике"}
@@ -19,8 +21,12 @@ def start(message):
 	bot.send_message ( message.chat.id,"Бот запущен" )
 	while True:
 		olimpiad = cheackData()
+		messageLesson = createMessage()
 		now = datetime.now()
-		#bot.send_message ( message.chat.id,"р" )
+		now_data = str(now.day) + "." + str(now.month)
+		if messageLesson != None and (dateLesson == str(now.day) or dateLesson == None):
+			bot.send_message ( message.chat.id,str(message))
+			dateLesson = str(int(now.date) - 1)
 		if now.hour == 9 and olimpiad != None and not morning_message:
 			bot.send_message ( message.chat.id,"Доброе утро, ребята!" )
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
@@ -36,6 +42,25 @@ def cheackData():
 	for data in olimpiades:
 		if now_data == data:
 			return olimpiades[data]
+
+		
+def createMessage():
+	now = datetime.now()
+	all_parser = parser()
+	links = all_parser[0]
+	time = all_parser[1]
+	message = "Что у вас сегодня:\n"
+	index = 1
+	for i in range(len(links)):
+		date = str(now.month) + str(now.day)
+		if date == links[i][0]:
+			message += str(index) + ". " + str(time[i]) + " " + str(links[i][2][3:]) + "\n" + str(links[i][1][8:])+"\n"
+			index += 1
+	if index == 1:
+		return None
+	else:
+		return message
+
 
 
 @bot.message_handler(content_types=['text'])
