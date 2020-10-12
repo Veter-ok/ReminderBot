@@ -80,7 +80,8 @@ def createMessage():
 
 @bot.message_handler(content_types=['text'])
 def lalala(message):
-	pass
+	if message.text == "др.лист":
+		bot.send_message(message.chat.id, Birthdays.BirthList())
 
 
 bot.polling(none_stop=True)
