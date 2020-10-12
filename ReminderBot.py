@@ -13,13 +13,13 @@ olimpiades = {"12.10" : "истории", "13.10" : "технологии и и�
               "16.10" : "географии", "19.10" : "праву", "22.10" : "математике", "26.10" : "экономике",
               "27.10" : "экономике", "28.10" : "исскуству", "29.10" : "информатике"}
 bot = telebot.TeleBot(str(TOKEN))
-morning_message = False
 
 
 @bot.message_handler(commands=['start'])
 def start(message):
 	bot.send_message ( message.chat.id,"Бот запущен" )
 	sendLesson = False
+	morning_message = False
 	sendDate = None
 	while True:
 		olimpiad = cheackData()
