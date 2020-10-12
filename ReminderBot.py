@@ -16,7 +16,6 @@ def start(message):
 	now = datetime.now()
 	now_data = str(now.day) + "." + str(now.month)
 	bot.send_message ( message.chat.id,"Бот запущен" )
-	#bot.send_message ( message.chat.id,str(now))
 	sendLesson = False
 	morning_message = False
 	sendDate = None
@@ -25,6 +24,7 @@ def start(message):
 		messageLesson = None
 		now = datetime.now()
 		now_data = str(now.day) + "." + str(now.month)
+		bot.send_message ( message.chat.id,str(now) )
 		if sendDate != now.day and sendLesson:
 			sendLesson = False
 		if now.hour == 6 and olimpiad != None and not morning_message:
@@ -46,6 +46,7 @@ def cheackData():
 	for data in olimpiades:
 		if now_data == data:
 			return olimpiades[data]
+	return None
 
 		
 def createMessage():
