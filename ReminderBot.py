@@ -14,32 +14,38 @@ bot = telebot.TeleBot(str(TOKEN))
 
 @bot.message_handler(commands=['start'])
 def start(message):
-	now = datetime.now()
-	now_data = str(now.day) + "." + str(now.month)
 	bot.send_message ( message.chat.id,"Бот запущен" )
 	sendLesson = False
+	sendLessonDate = None
+	sendBirthdaysDate = None
 	morning_message = False
-	sendDate = None
+	congratulation = False
 	while True:
 		olimpiad = cheackData()
-		messageLesson = createMessage()
+		messageLesson = createMessage() 
+		birthdays = Birthdays.checkDay()
 		now = datetime.now()
 		now_data = str(now.day) + "." + str(now.month)
-		#bot.send_message ( message.chat.id,str(now) )
-		if sendDate != now.day and sendLesson:
+		if sendBirthdaysDate != now.day and congratulation:
+			congratulation = False
+		if sendLessonDate != now.day and sendLesson:
 			sendLesson = False
 		if now.hour == 6 and olimpiad != None and not morning_message:
 			bot.send_message ( message.chat.id,"Доброе утро, ребята!" )
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
 			morning_message = True
-		elif now.hour == 14 and olimpiada != None:
+		elif now.hour == 14 and not morning_message:
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У выс есть ещё время, чтобы принять участие в олипиаде по {}".format (cheackData () ) )
 			morning_message = False
 			del olimpiades[olimpiad]
-		if messageLesson != None and not sendLesson and (now.hour == 11 and now.minute <= 30):
+		if messageLesson != None and not sendLesson and (now.hour == 6 and now.minute <= 15):
 			bot.send_message ( message.chat.id, messageLesson)
 			sendLesson = True
-			sendDate = now.day
+			sendLessonDate = now.day
+		if birthdays != None and not congratulation and (now.hour == 6 and now.minute <= 15):
+			bot.send_message ( message.chat.id, str(birthdays))
+			congratulation = True
+			sendBirthdaysDate = now.day
 		sleep(600)
 
 
