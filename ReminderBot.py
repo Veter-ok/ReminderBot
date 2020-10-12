@@ -24,7 +24,7 @@ def start(message):
 		messageLesson = None
 		now = datetime.now()
 		now_data = str(now.day) + "." + str(now.month)
-		bot.send_message ( message.chat.id,str(now) )
+		#bot.send_message ( message.chat.id,str(now) )
 		if sendDate != now.day and sendLesson:
 			sendLesson = False
 		if now.hour == 6 and olimpiad != None and not morning_message:
