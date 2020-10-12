@@ -21,6 +21,7 @@ def start(message):
 	sendLesson = False
 	morning_message = False
 	sendDate = None
+	print(now)
 	while True:
 		olimpiad = cheackData()
 		messageLesson = createMessage() 
