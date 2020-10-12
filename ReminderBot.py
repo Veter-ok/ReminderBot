@@ -4,6 +4,7 @@ from datetime import datetime
 from time import sleep
 import os
 import ParserLinks
+import Birthdays
 
 TOKEN = os.environ.get('BOT_TOKEN')
 olimpiades = {"12.10" : "истории", "13.10" : "технологии и итальянскому языку", "14.10" : "литературе",
@@ -79,7 +80,6 @@ def createMessage():
 
 @bot.message_handler(content_types=['text'])
 def lalala(message):
-	#bot.send_message(message.chat.id, message.text)
 	pass
 
 
