@@ -16,7 +16,7 @@ def get_content(html):
 	event_time = []
 	link_events = []
 	for i in range(0, len(all_events)):
-		if all_events[i].text[:3] == "8-1":
+		if all_events[i].text[:3] == "8-1" or all_events[i].text[:2] == "8 " or "Юный" in all_events[i].text:
 			link_events.append(all_links_events[i].get('href'))
 			event_time.append(all_time_events[i].text)
 	last_links = get_last_content_links(link_events)
