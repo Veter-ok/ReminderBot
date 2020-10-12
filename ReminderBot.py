@@ -62,7 +62,7 @@ def createMessage():
 	for i in range(len(links)):
 		date = str(now.month) + str(now.day)
 		if date == links[i][0]:
-			message += str(index) + ". " + str(time[i]) + " " + str(links[i][2][3:]) + "\n" + str(links[i][1][8:])+"\n"
+			message += str(index) + ". " + str(time[i]) + " " + str(links[i][2]) + "\n" + str(links[i][1][8:])+"\n"
 			index += 1
 	if index == 1:
 		return None
