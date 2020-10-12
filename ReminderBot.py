@@ -16,7 +16,7 @@ def start(message):
 	now = datetime.now()
 	now_data = str(now.day) + "." + str(now.month)
 	bot.send_message ( message.chat.id,"Бот запущен" )
-	bot.send_message ( message.chat.id,str(now))
+	#bot.send_message ( message.chat.id,str(now))
 	sendLesson = False
 	morning_message = False
 	sendDate = None
