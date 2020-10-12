@@ -21,7 +21,7 @@ def start(message):
 	sendLesson = False
 	morning_message = False
 	sendDate = None
-	print(now)
+	bot.send_message ( message.chat.id,str(now.hour))
 	while True:
 		olimpiad = cheackData()
 		messageLesson = createMessage() 
