@@ -84,4 +84,4 @@ def lalala(message):
 		bot.send_message(message.chat.id, Birthdays.BirthList())
 
 
-bot.polling(none_stop=True)
+bot.infinity_polling(True)
