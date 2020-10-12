@@ -16,10 +16,10 @@ bot = telebot.TeleBot(str(TOKEN))
 @bot.message_handler(commands=['start'])
 def start(message):
 	bot.send_message ( message.chat.id,"Бот запущен" )
+	bot.send_message ( message.chat.id,str(now.hour))
 	sendLesson = False
 	morning_message = False
 	sendDate = None
-	bot.send_message ( message.chat.id,str(now.hour))
 	while True:
 		olimpiad = cheackData()
 		messageLesson = None
