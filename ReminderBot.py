@@ -31,11 +31,11 @@ def start(message):
 			bot.send_message ( message.chat.id,"Доброе утро, ребята!" )
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
 			morning_message = True
-		elif now.hour == 17 and morning_message:
+		elif now.hour == 14 and morning_message:
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У выс есть ещё время, чтобы принять участие в олипиаде по {}".format (cheackData () ) )
 			morning_message = False
 			del olimpiades[olimpiad]
-		if messageLesson != None and not sendLesson and (now.hour == 9 and now.minute <= 30):
+		if messageLesson != None and not sendLesson and (now.hour == 9 and now.minute <= 45):
 			bot.send_message ( message.chat.id, messageLesson)
 			sendLesson = True
 			sendDate = now.day
