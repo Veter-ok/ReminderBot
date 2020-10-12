@@ -27,7 +27,7 @@ def start(message):
 		now_data = str(now.day) + "." + str(now.month)
 		if sendDate != now.day and sendLesson:
 			sendLesson = False
-		if now.hour == 9 and olimpiad != None and not morning_message:
+		if now.hour == 6 and olimpiad != None and not morning_message:
 			bot.send_message ( message.chat.id,"Доброе утро, ребята!" )
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
 			morning_message = True
