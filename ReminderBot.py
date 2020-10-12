@@ -43,6 +43,8 @@ def start(message):
 
 
 def cheackData():
+	now = datetime.now()
+	now_data = str(now.day) + "." + str(now.month)
 	for data in olimpiades:
 		if now_data == data:
 			return olimpiades[data]
