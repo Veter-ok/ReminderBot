@@ -22,6 +22,7 @@ def start(message):
 	morning_message = False
 	congratulation = False
 	while True:
+		bot.send_message ( message.chat.id,"проверка событий" )
 		olimpiad = cheackData()
 		messageLesson = createMessage() 
 		birthdays = Birthdays.checkDay()
@@ -47,6 +48,7 @@ def start(message):
 			bot.send_message ( message.chat.id, str(birthdays))
 			congratulation = True
 			sendBirthdaysDate = now.day
+		bot.send_message ( message.chat.id,"проверка событий завершена" )
 		sleep(600)
 
 
@@ -80,7 +82,9 @@ def createMessage():
 
 @bot.message_handler(content_types=['text'])
 def lalala(message):
+	bot.send_message(message.chat.id, "проверка сообщения")
 	if message.text == "др.лист":
+		bot.send_message(message.chat.id, "проверка сообщения прошла")
 		bot.send_message(message.chat.id, Birthdays.BirthList())
 
 
