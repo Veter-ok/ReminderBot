@@ -33,7 +33,6 @@ def start(message):
 		if sendLessonDate != now.day and sendLesson:
 			sendLesson = False
 		if now.hour == 6 and olimpiad != None and not morning_message:
-			bot.send_message ( message.chat.id,"Доброе утро, ребята!" )
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
 			morning_message = True
 		elif now.hour == 14 and not morning_message:
@@ -48,7 +47,6 @@ def start(message):
 			bot.send_message ( message.chat.id, str(birthdays))
 			congratulation = True
 			sendBirthdaysDate = now.day
-		bot.send_message ( message.chat.id,"проверка событий завершена" )
 		sleep(600)
 
 
@@ -82,9 +80,7 @@ def createMessage():
 
 @bot.message_handler(content_types=['text'])
 def lalala(message):
-	bot.send_message(message.chat.id, "проверка сообщения")
 	if message.text == "др.лист":
-		bot.send_message(message.chat.id, "проверка сообщения прошла")
 		bot.send_message(message.chat.id, Birthdays.BirthList())
 
 
