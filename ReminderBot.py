@@ -36,7 +36,7 @@ def start(message):
 		elif now.hour == 14 and olimpiad != None:
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олимпиаде по {}.".format (cheackData () ) )
 			morning_message = False
-			del olimpiades[olimpiad]
+			del olimpiades[now_day]
 		if not sendLesson and now.hour == 6:
 			messageLesson = createMessage() 
 			if messageLesson != None:
