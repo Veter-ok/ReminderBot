@@ -39,11 +39,11 @@ def start(message):
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олипиаде по {}.".format (cheackData () ) )
 			morning_message = False
 			del olimpiades[olimpiad]
-		if messageLesson != None and not sendLesson and (now.hour == 6 and now.minute <= 30):
+		if messageLesson != None and not sendLesson and (now.hour == 6):
 			bot.send_message ( message.chat.id, messageLesson)
 			sendLesson = True
 			sendLessonDate = now.day
-		if birthdays != None and not congratulation and (now.hour == 6 and now.minute <= 30):
+		if birthdays != None and not congratulation and (now.hour == 6):
 			bot.send_message ( message.chat.id, str(birthdays))
 			congratulation = True
 			sendBirthdaysDate = now.day
