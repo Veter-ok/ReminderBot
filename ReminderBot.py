@@ -24,29 +24,31 @@ def start(message):
 	while True:
 		print("проверка событий" )
 		olimpiad = cheackData()
-		messageLesson = createMessage() 
-		birthdays = Birthdays.checkDay()
 		now = datetime.now()
 		now_data = str(now.day) + "." + str(now.month)
 		if sendBirthdaysDate != now.day and congratulation:
 			congratulation = False
 		if sendLessonDate != now.day and sendLesson:
 			sendLesson = False
-		if now.hour == 6 and olimpiad != None and not morning_message:
+		if now.hour == 6 and olimpiad != None:
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
 			morning_message = True
-		elif now.hour == 14 and not morning_message:
-			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олипиаде по {}.".format (cheackData () ) )
+		elif now.hour == 14 and olimpiad != None:
+			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олимпиаде по {}.".format (cheackData () ) )
 			morning_message = False
 			del olimpiades[olimpiad]
-		if messageLesson != None and not sendLesson and (now.hour == 6):
-			bot.send_message ( message.chat.id, messageLesson)
-			sendLesson = True
-			sendLessonDate = now.day
-		if birthdays != None and not congratulation and (now.hour == 6):
-			bot.send_message ( message.chat.id, str(birthdays))
-			congratulation = True
-			sendBirthdaysDate = now.day
+		if not sendLesson and now.hour == 6:
+			messageLesson = createMessage() 
+			if messageLesson != None:
+				bot.send_message ( message.chat.id, messageLesson)
+				sendLesson = True
+				sendLessonDate = now.day
+		if not congratulation and now.hour == 6:
+			birthdays = Birthdays.checkDay()
+			if  birthdays != None:
+				bot.send_message ( message.chat.id, str(birthdays))
+				congratulation = True
+				sendBirthdaysDate = now.day
 		print("проверка событий завершена"  )
 		sleep(600)
 
