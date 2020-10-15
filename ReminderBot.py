@@ -17,14 +17,17 @@ def start(message):
 	bot.send_message ( message.chat.id,"Бот запущен" ) 
 	while True:
 		print("проверка событий" )
-		olimpiad = cheackData() # check if there are olympiads now
 		now = datetime.now() # remember now date
 		now_date = str(now.day) + "." + str(now.month) # remember now month and now day
-		if (now.hour == 6 and now.minute <= 10) and olimpiad != None:
-			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
-		elif (now.hour == 14 and now.minute <= 10) and olimpiad != None:
-			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олимпиаде по {}.".format (cheackData () ) )
-			del olimpiades[now_date]
+		if now.hour == 6 and now.minute <= 10:
+			olimpiad = cheackData() # check if there are olympiads now
+			if olimpiad != None:
+				bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
+		elif now.hour == 14 and now.minute <= 10:
+			olimpiad = cheackData() # check if there are olympiads now
+			if olimpiad != None:
+				bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олимпиаде по {}.".format (cheackData () ) )
+				del olimpiades[now_date]
 		if now.hour == 6 and now.minute <= 10:
 			messageLesson = createMessage() 
 			if messageLesson != None:
@@ -70,7 +73,7 @@ def lalala(message):
 	print("проверка сообщений"  )
 	if message.text == "др.лист":
 		bot.send_message(message.chat.id, Birthdays.BirthList())
-		print("проверка сообщений завершена"  )
+	print("проверка сообщений завершена"  )
 
 
 bot.infinity_polling(True)
