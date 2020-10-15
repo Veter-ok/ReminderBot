@@ -1,5 +1,4 @@
 import telebot
-from telebot import types
 from datetime import datetime
 from time import sleep
 import os
@@ -15,49 +14,34 @@ bot = telebot.TeleBot(str(TOKEN))
 
 @bot.message_handler(commands=['start'])
 def start(message):
-	bot.send_message ( message.chat.id,"Бот запущен" )
-	sendLesson = False
-	sendLessonDate = None
-	sendBirthdaysDate = None
-	morning_message = False
-	congratulation = False
+	bot.send_message ( message.chat.id,"Бот запущен" ) 
 	while True:
 		print("проверка событий" )
-		olimpiad = cheackData()
-		now = datetime.now()
-		now_data = str(now.day) + "." + str(now.month)
-		if sendBirthdaysDate != now.day and congratulation:
-			congratulation = False
-		if sendLessonDate != now.day and sendLesson:
-			sendLesson = False
-		if now.hour == 6 and olimpiad != None:
+		olimpiad = cheackData() # check if there are olympiads now
+		now = datetime.now() # remember now date
+		now_date = str(now.day) + "." + str(now.month) # remember now month and now day
+		if (now.hour == 6 and now.minute <= 10) and olimpiad != None:
 			bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
-			morning_message = True
-		elif now.hour == 14 and olimpiad != None:
+		elif (now.hour == 14 and now.minute <= 10) and olimpiad != None:
 			bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олимпиаде по {}.".format (cheackData () ) )
-			morning_message = False
-			del olimpiades[now_data]
-		if not sendLesson and now.hour == 6:
+			del olimpiades[now_date]
+		if now.hour == 6 and now.minute <= 10:
 			messageLesson = createMessage() 
 			if messageLesson != None:
 				bot.send_message ( message.chat.id, messageLesson)
-				sendLesson = True
-				sendLessonDate = now.day
-		if not congratulation and now.hour == 6:
+		if now.hour == 6 and now.minute <= 10:
 			birthdays = Birthdays.checkDay()
 			if  birthdays != None:
 				bot.send_message ( message.chat.id, str(birthdays))
-				congratulation = True
-				sendBirthdaysDate = now.day
 		print("проверка событий завершена"  )
 		sleep(600)
 
 
 def cheackData():
 	now = datetime.now()
-	now_data = str(now.day) + "." + str(now.month)
+	now_date = str(now.day) + "." + str(now.month)
 	for data in olimpiades:
-		if now_data == data:
+		if now_date == data:
 			return olimpiades[data]
 	return None
 
