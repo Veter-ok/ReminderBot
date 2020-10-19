@@ -19,7 +19,7 @@ def start(message):
 		print("проверка событий" )
 		now = datetime.now() # remember now date
 		now_date = str(now.day) + "." + str(now.month) # remember now month and now day
-		if now.hour == 6 and now.minute <= 10:
+		if now.hour == 6 and now.minute <= 25:
 			olimpiad = cheackData() # check if there are olympiads now
 			if olimpiad != None:
 				bot.send_message(message.chat.id, "Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
