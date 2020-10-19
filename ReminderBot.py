@@ -28,10 +28,10 @@ def start(message):
 			if olimpiad != None:
 				bot.send_message ( message.chat.id,"Добрый вечер, ребята! У вас есть ещё время, чтобы принять участие в олимпиаде по {}.".format (cheackData () ) )
 				del olimpiades[now_date]
-		if now.hour == 6 and now.minute <= 10:
-			messageLesson = createMessage() 
-			if messageLesson != None:
-				bot.send_message ( message.chat.id, messageLesson)
+		#if now.hour == 6 and now.minute <= 10:
+			#messageLesson = createMessage() 
+			#if messageLesson != None:
+				#bot.send_message ( message.chat.id, messageLesson)
 		if now.hour == 6 and now.minute <= 10:
 			birthdays = Birthdays.checkDay()
 			if  birthdays != None:
