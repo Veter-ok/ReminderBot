@@ -22,7 +22,7 @@ def start(message):
 		if now.hour == 6 and now.minute <= 10:
 			olimpiad = cheackData() # check if there are olympiads now
 			if olimpiad != None:
-				bot.send_message(message.chat.id, "Добрый вечер, ребята! Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
+				bot.send_message(message.chat.id, "Доброе утро, ребята! Напоминаю, что сегодня проводится олимпиада по {}. Прошу отписаться тех, кто примет участие".format(cheackData()))
 		elif now.hour == 14 and now.minute <= 10:
 			olimpiad = cheackData() # check if there are olympiads now
 			if olimpiad != None:
