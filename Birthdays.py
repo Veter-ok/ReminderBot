@@ -11,7 +11,7 @@ def DaysList():
 def checkDay():
 	now = datetime.now()
 	days = DaysList()
-	message = "Поздравляем, {} с Днём рождения! 🥳 🥳 🥳 🎂 🎂 🎂 "
+	message = "Поздравляем {} с Днём рождения! 🥳 🥳 🥳 🎂 🎂 🎂 "
 	now_date = str(now.day) + "." + str(now.month)
 	for date in days:
 		if date == now_date:
